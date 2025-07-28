@@ -7,7 +7,7 @@ type SetupProps = {
 };
 
 function Setup({ onStart }: SetupProps) {
-  const [playerCount, setPlayerCount] = useState(2);
+  const [playerCount, setPlayerCount] = useState<number | null>(1);
   const [playerNames, setPlayerNames] = useState<string[]>([]);
 
   const allNamesFilled = playerNames.every((name) => name.trim() !== "");
@@ -17,6 +17,7 @@ function Setup({ onStart }: SetupProps) {
   };
 
   useEffect(() => {
+    if (playerCount === null) return;
     setPlayerNames((prev) => {
       if (playerCount > prev.length) {
         return [...prev, ...Array(playerCount - prev.length).fill("")];
@@ -36,12 +37,18 @@ function Setup({ onStart }: SetupProps) {
         <input
           type="number"
           min="1"
-          value={playerCount}
-          onChange={(e) => setPlayerCount(Number(e.target.value))}
+          value={playerCount === null ? "" : playerCount}
+          onChange={(e) => {
+            const value = e.target.value;
+            setPlayerCount(value === "" ? null : Number(value));
+          }}
+          onBlur={() => {
+            if (playerCount === null || playerCount < 1) {
+              setPlayerCount(1); // 1 игрок по умолчанию
+            }
+          }}
         />
       </label>
-
-      {/* {!allNamesFilled && <p>Заполните все имена, чтобы начать игру</p>} */}
 
       <p className={allNamesFilled ? "hidden" : ""}>
         Заполните все имена, чтобы начать игру

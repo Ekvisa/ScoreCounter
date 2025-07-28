@@ -20,7 +20,8 @@ function App() {
     setIsStarted(true);
   };
 
-  const handleTempScoreChange = (index: number, value: number) => {
+  const handleTempScoreChange = (index: number, value: number | null) => {
+    if (value === null) return;
     const updated = [...tempScores];
     updated[index] = value;
     setTempScores(updated);
@@ -30,16 +31,16 @@ function App() {
     const updatedScores = scores.map((s, i) => s + tempScores[i]);
     setScores(updatedScores);
 
-    // определение победителя раунда:
-    const maxScore = Math.max(...tempScores);
-    const winners = tempScores
+    // Находим максимум по обновлённым общим очкам:
+    const maxScore = Math.max(...updatedScores);
+    const leaders = updatedScores
       .map((score, index) => ({ score, index }))
       .filter(({ score }) => score === maxScore);
 
-    if (winners.length === 1) {
-      setRoundWinnerIndex(winners[0].index); // например, как useState<number | null>
+    if (leaders.length === 1) {
+      setRoundWinnerIndex(leaders[0].index); // явный победитель
     } else {
-      setRoundWinnerIndex(null); // ничья
+      setRoundWinnerIndex(null); // ничья — не подсвечивать никого
     }
 
     setTempScores(Array(names.length).fill(0));
