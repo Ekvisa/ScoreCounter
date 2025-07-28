@@ -92,7 +92,11 @@ function ScoreCard({
     const raw = e.target.value;
     setInputValue(raw);
   };
-
+  const handleFocus = () => {
+    if (inputValue === "0") {
+      setInputValue("");
+    }
+  };
   const handleBlur = () => {
     if (inputValue === "" || inputValue === "-") {
       setInputValue("0");
@@ -114,6 +118,7 @@ function ScoreCard({
               type="number"
               inputMode="numeric"
               value={inputValue}
+              onFocus={handleFocus}
               onChange={handleChange}
               onBlur={handleBlur}
             />

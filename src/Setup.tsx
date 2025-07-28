@@ -7,7 +7,7 @@ type SetupProps = {
 };
 
 function Setup({ onStart }: SetupProps) {
-  const [playerCount, setPlayerCount] = useState<number | null>(1);
+  const [playerCount, setPlayerCount] = useState<number | null>(null);
   const [playerNames, setPlayerNames] = useState<string[]>([]);
 
   const allNamesFilled = playerNames.every((name) => name.trim() !== "");
@@ -74,7 +74,7 @@ function Setup({ onStart }: SetupProps) {
 
       <button
         onClick={handleStart}
-        disabled={!allNamesFilled}
+        disabled={!allNamesFilled || playerNames.length < 1}
         title={!allNamesFilled ? "Введите имена всех игроков" : ""}
       >
         Начать
