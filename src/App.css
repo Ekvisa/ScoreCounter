@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
+.playersnumber input {
+  width: 3rem;
+  margin: 0 1rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+table {
+  border-collapse: collapse;
+  margin-top: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+td {
+  padding: 1rem;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+th {
+  background-color: #607c6e;
   color: white;
+  padding: 1rem;
+}
+tr:nth-child(even) {
+  background-color: #e3ede1;
+}
+tr:nth-child(odd) {
+  background-color: #f2e9d8;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin: 1rem 0;
+  padding: 0;
+  color: #38835d;
+  font-weight: normal;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button:disabled {
+  cursor: not-allowed;
+}
+
+.resultstable button {
+  margin-right: 1rem;
+}
+
+.scorecell {
+  text-align: right;
+}
+.scorecell input {
+  width: 3rem;
+}
+
+.winnerrow {
+  animation: winnerGlow 1.5s ease-out forwards;
+  font-weight: bold;
+}
+
+@keyframes winnerGlow {
+  0% {
+    color: #e43a27;
   }
-  to {
-    transform: rotate(360deg);
+  30% {
+    color: #ff7878;
   }
+  100% {
+    color: #e43a27;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+ul {
+  margin: 1rem 0;
+}
+li {
+  margin: 0.5rem 0;
+  color: #38835d;
 }
