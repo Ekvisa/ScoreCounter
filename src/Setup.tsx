@@ -3,7 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 type SetupProps = {
-  onStart: (names: string[]) => void;
+  onStart: (names: string[], count: number) => void;
 };
 
 function Setup({ onStart }: SetupProps) {
@@ -13,7 +13,9 @@ function Setup({ onStart }: SetupProps) {
   const allNamesFilled = playerNames.every((name) => name.trim() !== "");
 
   const handleStart = () => {
-    onStart(playerNames);
+    if (playerCount !== null) {
+      onStart(playerNames, playerCount);
+    }
   };
 
   useEffect(() => {

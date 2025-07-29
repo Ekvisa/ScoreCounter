@@ -1,65 +1,3 @@
-// import "./ScoreCard.css";
-
-// type ScoreCardProps = {
-//   index: number;
-//   name: string;
-//   score: number;
-//   editing: boolean;
-//   tempScore: number | null;
-//   onTempScoreChange: (value: number | null) => void;
-//   roundWinnerIndex: number | null;
-// };
-
-// function ScoreCard({
-//   index,
-//   name,
-//   score,
-//   editing,
-//   tempScore,
-//   onTempScoreChange,
-//   roundWinnerIndex,
-// }: ScoreCardProps) {
-//   return (
-//     <tr className={roundWinnerIndex === index ? "winnerrow" : ""}>
-//       <td>{name}</td>
-//       <td className="scorecell">
-//         {score}
-//         {editing && (
-//           <span>
-//             {" + "}
-//             <input
-//               type="number"
-//               value={tempScore === null ? "" : tempScore}
-//               onChange={(e) => {
-//                 const raw = e.target.value;
-
-//                 // Разрешаем пустую строку, минус и числовые значения
-//                 if (raw === "" || raw === "-") {
-//                   onTempScoreChange(null);
-//                   return;
-//                 }
-
-//                 const num = Number(raw);
-//                 if (!isNaN(num)) {
-//                   onTempScoreChange(num);
-//                 }
-//               }}
-//               onBlur={() => {
-//                 // При расфокусе пустота или "-" превращаются в 0
-//                 if (tempScore === null) {
-//                   onTempScoreChange(0);
-//                 }
-//               }}
-//             />
-
-//           </span>
-//         )}
-//       </td>
-//     </tr>
-//   );
-// }
-
-// export default ScoreCard;
 import { useEffect, useState } from "react";
 
 type ScoreCardProps = {
@@ -69,7 +7,7 @@ type ScoreCardProps = {
   editing: boolean;
   tempScore: number | null;
   onTempScoreChange: (value: number | null) => void;
-  roundWinnerIndex: number | null;
+  winnerIndex: number | null;
 };
 
 function ScoreCard({
@@ -79,7 +17,7 @@ function ScoreCard({
   editing,
   tempScore,
   onTempScoreChange,
-  roundWinnerIndex,
+  winnerIndex,
 }: ScoreCardProps) {
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -107,7 +45,7 @@ function ScoreCard({
   };
 
   return (
-    <tr className={roundWinnerIndex === index ? "winnerrow" : ""}>
+    <tr className={winnerIndex === index ? "winnerrow" : ""}>
       <td>{name}</td>
       <td className="scorecell">
         {score}
