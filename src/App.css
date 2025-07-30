@@ -5,11 +5,11 @@
 
 table {
   border-collapse: collapse;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 td {
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
 th {
   background-color: #607c6e;
@@ -32,10 +32,36 @@ h1 {
 
 button:disabled {
   cursor: not-allowed;
+  filter: grayscale(100%);
 }
 
-.resultstable button {
+button {
   margin: 1rem 1rem 0 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #666;
+  font-size: 1rem;
+}
+button:hover {
+  box-shadow: 0 0 6px #666;
+}
+button:disabled:hover {
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.editbutton {
+  padding: 0.5rem;
+}
+.okbutton {
+  background-color: #4fa77a;
+  padding: 0.5rem 0.8rem;
+  color: white;
+}
+.resetbutton {
+  background-color: #e43a27;
+  padding: 0.5rem 0.8rem;
+  color: white;
 }
 
 .scorecell {

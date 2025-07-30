@@ -30,7 +30,8 @@ function Setup({ onStart }: SetupProps) {
       }
     });
   }, [playerCount]);
-
+  console.log(allNamesFilled);
+  console.log(playerCount);
   return (
     <div className="setupwrapper">
       <h1>Настройка игроков</h1>
@@ -52,9 +53,9 @@ function Setup({ onStart }: SetupProps) {
         />
       </label>
 
-      <p className={allNamesFilled ? "hidden" : ""}>
-        Заполните все имена, чтобы начать игру
-      </p>
+      {/* <p className={allNamesFilled ? "hidden" : ""}>
+        Заполните все имена, чтобы начать
+      </p> */}
 
       <ul>
         {playerNames.map((name, index) => (
@@ -73,6 +74,15 @@ function Setup({ onStart }: SetupProps) {
           </li>
         ))}
       </ul>
+      {playerCount !== null ? (
+        allNamesFilled ? (
+          <p>Готово! Весёлой игры! 🌿</p>
+        ) : (
+          <p>Заполните все имена, чтобы начать</p>
+        )
+      ) : (
+        ""
+      )}
 
       <button
         onClick={handleStart}

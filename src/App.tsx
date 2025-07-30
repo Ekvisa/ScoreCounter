@@ -97,10 +97,18 @@ function App() {
         <Setup onStart={handleStart} />
       ) : (
         <div className="resultstable">
-          <button onClick={() => setEditing(true)} disabled={editing}>
+          <button
+            className="editbutton"
+            onClick={() => setEditing(true)}
+            disabled={editing}
+          >
             ✏️
           </button>
-          {editing && <button onClick={applyScores}>✔</button>}
+          {editing && (
+            <button className="okbutton" onClick={applyScores}>
+              ✔
+            </button>
+          )}
           <table>
             <thead>
               <tr>
@@ -126,11 +134,12 @@ function App() {
             </tbody>
           </table>
           <button
+            className="resetbutton"
             onClick={() => {
               handleReset();
             }}
           >
-            Новая игра
+            Сброс
           </button>
         </div>
       )}
